@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import classnames from "classnames";
 //import { FormLabel } from "react-bootstrap";
 //import { propTypes } from "react-bootstrap/esm/Image";
 
@@ -18,12 +19,14 @@ const TextInputGrup = ({
       <input
         type={type}
         name={name}
-        className={"form-control form-control-lg"}
-        
+        className={classnames(" form-control form-control-lg", {
+          "is-invalid": error,
+        })}
         placeholder={placeholder}
         value={value}
         onChange={onChange}
       />
+      {error && <div className="invalid-feedback">{error}</div>}
     </div>
   );
 };
@@ -34,6 +37,7 @@ TextInputGrup.prototype = {
   type: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   label: PropTypes.string.isRequired,
+  error: PropTypes.string,
 };
 TextInputGrup.defaultProps = {
   type: "text",
