@@ -10,6 +10,7 @@ import AddContact from "./Component/contacts/AddContact";
 import About from "./Component/Pages/About";
 import Notfound from "./Component/Pages/Notfound";
 import Vks from "./Component/test/Vks";
+import EditContact from "./Component/contacts/EditContact";
 //import Switch from "react-bootstrap/esm/Switch";
 function App() {
   return (
@@ -21,8 +22,10 @@ function App() {
             <Switch>
               <Route exact path="/" component={Contacts} />
               <Route exact path="/Contact/add" component={AddContact} />
+              <Route exact path='/contacts/edit/:id' component={EditContact} />
               <Route exact path="/about" component={About} />
               <Route exact path="/vks" component={Vks} />
+              
               <Route component={Notfound} />
             </Switch>
           </div>

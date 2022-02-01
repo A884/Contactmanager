@@ -4,15 +4,27 @@ import { Consumer } from "../../Context";
 import TextInputGrup from "../layout/TextInputGrup";
 import axios from "axios";
 
-class AddContact extends Component {
+class EditContact extends Component {
   state = {
     name: "",
     email: "",
     phone: "",
-
     errors: {},
   };
+  async componentDidMount() {
+    const { id } = this.props.match.params;
+    const res = await axios.get(
+      "https://jsonplaceholder.typicode.com/users/${id}"
+    );
 
+    const contact = res.data;
+
+    this.setState({
+      name: contact.name,
+      email: contact.email,
+      phone: contact.phone,
+    });
+  }
   onChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
   onSubmit = async (dispatch, e) => {
@@ -30,17 +42,19 @@ class AddContact extends Component {
       this.setState({ errors: { phone: "Phone is requird" } });
       return;
     }
-
-    const newContact = {
+    const updContact = {
       name,
       email,
       phone,
     };
-    const res = await axios.post(
-      "https://jsonplaceholder.typicode.com/users",
-      newContact
+    const { id } = this.props.match.params;
+
+    const res = await axios.put(
+      `https://jsonplaceholder.typicode.com/users/${id}`,
+      updContact
     );
-    dispatch({ type: "ADD_CONTACT", payload: res.data });
+    dispatch({ type: "UPDATE_CONTACT", payload: res.data });
+
     this.setState({
       name: "",
       email: "",
@@ -60,7 +74,7 @@ class AddContact extends Component {
 
           return (
             <div className="card mb-3">
-              <div className="card-Header">AddContact</div>
+              <div className="card-Header">EditContact</div>
               <div className="card-body">
                 <form onSubmit={this.onSubmit.bind(this, dispatch)}>
                   <div className="form-group">
@@ -100,8 +114,8 @@ class AddContact extends Component {
 
                   <input
                     type="submit"
-                    value="AddContact"
-                    className="btn btn-block btn-primary  my-3"
+                    value="UpdateContact"
+                    className="btn btn-block btn-success  my-3"
                   />
                 </form>
               </div>
@@ -112,4 +126,4 @@ class AddContact extends Component {
     );
   }
 }
-export default AddContact;
+export default EditContact;
