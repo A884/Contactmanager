@@ -2,7 +2,7 @@
   "name": "proj",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://A888.github.io/contactmanager",
+  "homepage": "https://A888.github.io/Contactmanager",
   "dependencies": {
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.7",
