@@ -64,7 +64,7 @@ class AddContact extends Component {
               <div className="card-body">
                 <form onSubmit={this.onSubmit.bind(this, dispatch)}>
                   <div className="form-group">
-                    <label htmlFor="name">name</label>
+                   
                     <TextInputGrup
                       label="Name"
                       name="name"
@@ -75,7 +75,7 @@ class AddContact extends Component {
                     />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="email">email</label>
+                   
                     <TextInputGrup
                       label="Email"
                       name="email"
@@ -87,7 +87,7 @@ class AddContact extends Component {
                     />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="phone">phone</label>
+                   
                     <TextInputGrup
                       label="Phone"
                       name="phone"
