@@ -16,7 +16,6 @@ class EditContact extends Component {
     const res = await axios.get(
       `https://jsonplaceholder.typicode.com/users/${id}`
     );
-
     const contact = res.data;
 
     this.setState({
@@ -25,6 +24,7 @@ class EditContact extends Component {
       phone: contact.phone,
     });
   }
+  onChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
   onSubmit = async (dispatch, e) => {
     e.preventDefault();
@@ -63,7 +63,7 @@ class EditContact extends Component {
     });
     this.props.history.push("/");
   };
-  onChange = (e) => this.setState({ [e.target.name]: e.target.value });
+
   render() {
     const { name, email, phone, errors } = this.state;
     return (
@@ -80,7 +80,7 @@ class EditContact extends Component {
                     <TextInputGrup
                       label="Name"
                       name="name"
-                      placeholder="Enter Name"
+                      placeholder="Entername"
                       error={errors.name}
                       value={name}
                       onChange={this.onChange}
@@ -91,7 +91,7 @@ class EditContact extends Component {
                       label="Email"
                       name="email"
                       type="email"
-                      placeholder=" Enter Email"
+                      placeholder="email"
                       value={email}
                       onChange={this.onChange}
                       error={errors.email}
@@ -101,7 +101,7 @@ class EditContact extends Component {
                     <TextInputGrup
                       label="Phone"
                       name="phone"
-                      placeholder="Enter Phone"
+                      placeholder="Enterphone"
                       value={phone}
                       onChange={this.onChange}
                       error={errors.phone}
