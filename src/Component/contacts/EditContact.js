@@ -14,7 +14,7 @@ class EditContact extends Component {
   async componentDidMount() {
     const { id } = this.props.match.params;
     const res = await axios.get(
-      "https://jsonplaceholder.typicode.com/users/${id}"
+      `https://jsonplaceholder.typicode.com/users/${id}`
     );
 
     const contact = res.data;
@@ -25,7 +25,6 @@ class EditContact extends Component {
       phone: contact.phone,
     });
   }
-  onChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
   onSubmit = async (dispatch, e) => {
     e.preventDefault();
@@ -64,7 +63,7 @@ class EditContact extends Component {
     });
     this.props.history.push("/");
   };
-
+  onChange = (e) => this.setState({ [e.target.name]: e.target.value });
   render() {
     const { name, email, phone, errors } = this.state;
     return (
@@ -78,34 +77,31 @@ class EditContact extends Component {
               <div className="card-body">
                 <form onSubmit={this.onSubmit.bind(this, dispatch)}>
                   <div className="form-group">
-                    <label htmlFor="name">name</label>
                     <TextInputGrup
                       label="Name"
                       name="name"
-                      placeholder="Entername"
+                      placeholder="Enter Name"
                       error={errors.name}
                       value={name}
                       onChange={this.onChange}
                     />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="email">email</label>
                     <TextInputGrup
                       label="Email"
                       name="email"
                       type="email"
-                      placeholder="email"
+                      placeholder=" Enter Email"
                       value={email}
                       onChange={this.onChange}
                       error={errors.email}
                     />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="phone">phone</label>
                     <TextInputGrup
                       label="Phone"
                       name="phone"
-                      placeholder="Enterphone"
+                      placeholder="Enter Phone"
                       value={phone}
                       onChange={this.onChange}
                       error={errors.phone}

@@ -1,5 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { HashRouter as Router, Route, Switch } from "react-router-dom";
 
 import "./App.css";
 //import { render } from "@testing-library/react";
@@ -17,15 +17,15 @@ function App() {
     <Provider>
       <Router>
         <div className="App">
-          <Header branding="contact manager" />
+          {<Header branding="contact manager" />}
           <div className="container">
             <Switch>
               <Route exact path="/" component={Contacts} />
               <Route exact path="/Contact/add" component={AddContact} />
-              <Route exact path='/contacts/edit/:id' component={EditContact} />
+              <Route exact path="/contacts/edit/:id" component={EditContact} />
               <Route exact path="/about" component={About} />
               <Route exact path="/vks" component={Vks} />
-              
+
               <Route component={Notfound} />
             </Switch>
           </div>
